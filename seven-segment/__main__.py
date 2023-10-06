@@ -52,7 +52,7 @@ def main():
         string = input("Enter what you want the clock display to print: ")
 
         # Parse Clock entry
-        clock_pattern = compile(f"([12]?)(\d):([0-5])(\d)")
+        clock_pattern = compile("([12]?)(\d):([0-5])(\d)")
         m = clock_pattern.match(string)
         if m is None:
             pass
@@ -69,6 +69,7 @@ def main():
                 digits += m.group(i)
             while True:
                 activate_displays(digits, set_colon=True)
+        print("not a clock entry")
 
         # Parse number
         try:
@@ -78,14 +79,44 @@ def main():
             # Watch for negative values, floating points...
         except ValueError:
             pass
+            print("not a number")
+
+        # Parse anything else
+        valid_char = ''.join(list(SEGS_FOR_CHAR.keys())).replace("-","\\-")
+        print(valid_char)
+        pattern = compile(f"([{valid_char}])?(\.)?([{valid_char}])?(\.)?(:)?([{valid_char}])?(\.)?(')?([{valid_char}])?(\.)?")
+        m = pattern.match(string)
+        if m is None:
+            pass
+        else:
+            digit_group_indexes = [1, 3, 6, 9]
+            dp_group_indexes = [2, 4, 7, 10]
+            print(m.groups())
+            digits = ""
+            dp = [False]*4
+            for i in digit_group_indexes:
+                if m.group(i) is None:
+                    digits += " "
+                else:
+                    digits += m.group(i)
+            dp_idx = 0
+            for i in dp_group_indexes:
+                dp[dp_idx] = m.group(i) is not None
+                dp_idx += 1
+            set_colon = m.group(5) is not None
+            set_thousand = m.group(8) is not None
+            while True:
+                activate_displays(digits, decimal_point=dp, set_colon=set_colon, set_thousand=set_thousand)
+
             
         digits = "-Err"
+        print(f"Could not parse entry, showing: '{digits}'")
         while True:
             activate_displays(digits)
 
     except KeyboardInterrupt:
         print()
-        print("Ctrl+C pressed, exiting")
+        print("Ctrl+c pressed, exiting")
     except ValueError as e:
         print(e)
     except Exception:
