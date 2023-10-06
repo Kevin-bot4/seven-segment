@@ -64,7 +64,7 @@ COLON_OUT_H = 22  # Blue
 THOUSAND_OUT_H = 17  # Grey
 
 # Decimal Point
-DP_OUT_H = 15  # White 
+DP_OUT_H = 15  # White
 
 # 7-Segment anodes GPIO allocation
 SEGMENT_OUT_H = [ 24,  # A - Yellow - 14
