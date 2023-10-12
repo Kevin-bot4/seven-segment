@@ -1,4 +1,5 @@
-
+# seven-segment module constants file
+# Author: Eddy Ferre - ferree@seattleu.edu
 
 # Seven-segment display tester
 #
@@ -13,7 +14,7 @@
 #        D
 #
 
-# Defines the segment active/inactive for each characters, numbersand symbols
+# Defines the segment active/inactive for each characters, numbers and symbols
 #                        A  B  C  D  E  F  G
 SEGS_FOR_CHAR = { '0': [ 1, 1, 1, 1, 1, 1, 0 ],
                   '1': [ 0, 1, 1, 0, 0, 0, 0 ],
@@ -24,7 +25,7 @@ SEGS_FOR_CHAR = { '0': [ 1, 1, 1, 1, 1, 1, 0 ],
                   '6': [ 1, 0, 1, 1, 1, 1, 1 ],
                   '7': [ 1, 1, 1, 0, 0, 0, 0 ],
                   '8': [ 1, 1, 1, 1, 1, 1, 1 ],
-                  '9': [ 1, 1, 1, 0, 0, 1, 1 ],
+                  '9': [ 1, 1, 1, 1, 0, 1, 1 ],
                   'A': [ 1, 1, 1, 0, 1, 1, 1 ],
                   'C': [ 1, 0, 0, 1, 1, 1, 0 ],
                   'E': [ 1, 0, 0, 1, 1, 1, 1 ],
@@ -37,6 +38,7 @@ SEGS_FOR_CHAR = { '0': [ 1, 1, 1, 1, 1, 1, 0 ],
                   'P': [ 1, 1, 0, 0, 1, 1, 1 ],
                   'S': [ 1, 0, 1, 1, 0, 1, 1 ],
                   'U': [ 0, 1, 1, 1, 1, 1, 0 ],
+                  'Y': [ 0, 1, 1, 0, 0, 1, 1 ],
                   'c': [ 0, 0, 0, 1, 1, 0, 1 ],
                   'd': [ 0, 0, 0, 1, 1, 0, 1 ],
                   'h': [ 0, 0, 1, 0, 1, 1, 1 ],
@@ -47,6 +49,8 @@ SEGS_FOR_CHAR = { '0': [ 1, 1, 1, 1, 1, 1, 0 ],
                   'r': [ 0, 0, 0, 0, 1, 0, 1 ],
                   't': [ 0, 0, 0, 1, 1, 1, 1 ],
                   'u': [ 0, 0, 1, 1, 1, 0, 0 ],
+                  '[': [ 1, 0, 0, 1, 1, 1, 0 ],
+                  ']': [ 1, 1, 1, 1, 0, 0, 0 ],
                   '-': [ 0, 0, 0, 0, 0, 0, 1 ],
                   '_': [ 0, 0, 0, 1, 0, 0, 0 ],
                   '=': [ 0, 0, 0, 1, 0, 0, 1 ],
@@ -76,7 +80,14 @@ SEGMENT_OUT_H = [ 24,  # A - Yellow - 14
                   25,  # G - Orange - 15
               ]
 
+# LED Output pin
+LED_OUT_H = 12
+
+# Push button input pin
+BUTTON_IN = 4
+
 ACTIVE_LOW_PINS = DISP_OUT_L
-ACTIVE_HIGH_PINS = [COLON_OUT_H] + [THOUSAND_OUT_H] + [DP_OUT_H] + SEGMENT_OUT_H
+ACTIVE_HIGH_PINS = [COLON_OUT_H] + [THOUSAND_OUT_H] + [DP_OUT_H] + SEGMENT_OUT_H + [LED_OUT_H]
 
 OUT_PINS = ACTIVE_LOW_PINS + ACTIVE_HIGH_PINS
+IN_PINS = [BUTTON_IN]
