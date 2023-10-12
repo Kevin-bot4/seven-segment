@@ -16,7 +16,7 @@ from .clock import Clock
 def main():
     clock = None
     channels_set = False
-    clock_pattern = compile(r"([012]?)(\d):([0-5])(\d)")
+    clock_pattern = compile(r"([12]?)(\d):([0-5])(\d)")
 
     try:
         parser = ArgumentParser(description='Seven-Segment Clock Display')
@@ -29,7 +29,7 @@ def main():
         parser.add_argument('-a',
                             '--alarm',
                             action='store',
-                            help="Alarm time, HH:MM format")
+                            help="Alarm time, H:MM format (24hr)")
         parser.add_argument('-m',
                             '--music',
                             action='store',
@@ -50,10 +50,13 @@ def main():
             if args.alarm is not None:
                 m = clock_pattern.match(args.alarm)
                 if m is None:
-                    print(f"ERROR: Invalid alarm argument '{args.alarm}'. Must be 'HH:MM'")
+                    print(f"ERROR: Invalid alarm argument '{args.alarm}'. Must be 'H:MM'")
                 else:
                     print(f"Alarm set to {args.alarm}")
                     alarm = args.alarm.replace(":", "")
+                    if m.group(1) == '':
+                        alarm = " " + alarm
+                    print(f"alarm: '{alarm}'")
                     if args.music is not None:
                         if path.isfile(args.music):
                             music_file = args.music

@@ -40,7 +40,10 @@ class Clock(Thread):
     # Event function to capture current time and check alarm status, every 500ms
     def get_time(self):
         if not self.got_interrupted:
-            self.now = f"{datetime.now():%H%M}"
+            tmp = f"{datetime.now():%H%M}"
+            if tmp[0] == '0':
+                tmp = ' ' + tmp[1:]
+            self.now = tmp
             if self.alarm == self.now and self.alarm_is_off and not self.alarm_locked:
                 self.alarm_locked = True
                 self.alarm_is_off = False
