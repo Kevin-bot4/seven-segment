@@ -56,7 +56,6 @@ def main():
                     alarm = args.alarm.replace(":", "")
                     if m.group(1) == '':
                         alarm = " " + alarm
-                    print(f"alarm: '{alarm}'")
                     if args.music is not None:
                         if path.isfile(args.music):
                             music_file = args.music
