@@ -59,35 +59,38 @@ SEGS_FOR_CHAR = { '0': [ 1, 1, 1, 1, 1, 1, 0 ],
 
 # Display Selector (cathode) GPIO Pin Allocation
 #              D1  D2  D3  D4
-DISP_OUT_L = [ 26, 16,  6,  5 ]  # White, Grey , Purple, Orange
+DISP_OUT_L = [ 12, 16,  8,  7 ]
 
 # Colon GPIO Allocation
-COLON_OUT_H = 22  # Blue
+COLON_OUT_H = 17
 
 # Thousand mark GPIO Allocation
-THOUSAND_OUT_H = 17  # Grey
+THOUSAND_OUT_H = 1
 
 # Decimal Point
-DP_OUT_H = 15  # White
+DP_OUT_H = 2
 
 # 7-Segment anodes GPIO allocation
-SEGMENT_OUT_H = [ 24,  # A - Yellow - 14
-                   8,  # B - Red    - 16
-                  23,  # C - Green  - 13
-                   7,  # D - Brown  - 3
-                  14,  # E - Black  - 5
-                  27,  # F - Purple - 11
-                  25,  # G - Orange - 15
+SEGMENT_OUT_H = [ 23,  # A
+                  25,  # B
+                  18,  # C
+                   4,  # D
+                   3,  # E
+                  15,  # F
+                  24,  # G
               ]
 
 # LED Output pin
-LED_OUT_H = 12
+LED_OUT_H = 14
 
 # Push button input pin
-BUTTON_IN = 4
+BUTTON_IN = 21
 
 ACTIVE_LOW_PINS = DISP_OUT_L
 ACTIVE_HIGH_PINS = [COLON_OUT_H] + [THOUSAND_OUT_H] + [DP_OUT_H] + SEGMENT_OUT_H + [LED_OUT_H]
 
 OUT_PINS = ACTIVE_LOW_PINS + ACTIVE_HIGH_PINS
 IN_PINS = [BUTTON_IN]
+
+HIGH = True
+LOW = False

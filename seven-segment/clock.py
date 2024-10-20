@@ -3,6 +3,9 @@
 
 from threading import Timer, Thread
 from datetime import datetime
+
+from os import environ
+environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from pygame import mixer
 
 from .display import *
@@ -61,6 +64,7 @@ class Clock(Thread):
     def monitor_button(self):
         if not self.got_interrupted:
             if get_button_pressed():
+                print("button pressed")
                 self.alarm_is_off = True
                 self.stop_music()
                 set_led(False)

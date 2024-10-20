@@ -115,14 +115,14 @@ def main():
                 print("not a number")
 
             # Parse anything else
-            valid_char = ''.join(list(SEGS_FOR_CHAR.keys())).replace("-", "\\-")
+            valid_char = ''.join(list(SEGS_FOR_CHAR.keys())).replace("-", "\\-").replace("[","\[").replace("]","\]")
             print(valid_char)
             pattern = compile(
                 rf"([{valid_char}])?(\.)?([{valid_char}])?(\.)?(:)?([{valid_char}])?(\.)?(')?([{valid_char}])?(\.)?")
             m = pattern.match(string)
             if m is None:
                 pass
-            else:
+            elif m.groups() != (None, None, None, None, None, None, None, None, None, None):
                 digit_group_indexes = [1, 3, 6, 9]
                 dp_group_indexes = [2, 4, 7, 10]
                 print(m.groups())
@@ -150,8 +150,7 @@ def main():
     except KeyboardInterrupt:
         if clock is not None:
             clock.stop()
-        print()
-        print("Ctrl+c pressed, exiting")
+        print("\b\b  \nCtrl+c pressed, exiting")
     except ValueError as e:
         print(e)
     except Exception:
@@ -159,7 +158,7 @@ def main():
         print_exc(file=stdout)
         print("-" * 60)
     finally:
-        cleanup(channels_set)
+        cleanup()
 
 
 if __name__ == "__main__":
