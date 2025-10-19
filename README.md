@@ -16,7 +16,7 @@
 
 ### Schematics
 
-![Schematics](./../blob/res/Single_seven_segment_4.jpg)
+![Schematics](/res/Single_seven_segment_4.jpg)
 
 ## Software
 
