@@ -12,6 +12,7 @@ from argparse import ArgumentParser
 from .display import *
 from .clock import Clock
 from .timer import parse_timer, run_timer
+from .stopwatch import run_stopwatch
 
 
 def main():
@@ -78,8 +79,8 @@ def main():
                 sleep(1.0)
 
         elif args.mode == 'stopwatch':
-            # ADD YOUR CODE HERE (then remove 'pass')
-            pass
+            print("Running 'stopwatch' mode ...")
+            run_stopwatch()
 
         elif args.mode == 'timer':
             print(f"Running 'timer' mode, counting down from {args.timerstart} ...")
